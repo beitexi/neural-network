@@ -8,8 +8,8 @@ class neuralNetwork:
         self.onodes = outputnodes
         self.lr = learningrate
 
-        self.wih = numpy.random.normal(0.0,pow(self.hnodes,0.5),(self.hnodes,self.inodes))
-        self.who = numpy.random.normal(0.0,pow(self.onodes,0.5),(self.onodes,self.hnodes))
+        self.wih = numpy.random.normal(0.0,pow(self.hnodes,-0.5),(self.hnodes,self.inodes))
+        self.who = numpy.random.normal(0.0,pow(self.onodes,-0.5),(self.onodes,self.hnodes))
 
         self.activation_function = lambda x:scipy.special.expit(x)
 
@@ -40,16 +40,16 @@ class neuralNetwork:
         return final_outputs
 
 input_nodes = 784
-hidden_nodes = 100
+hidden_nodes = 200
 output_nodes = 10
-learning_rate = 0.3
+learning_rate = 0.2
 n = neuralNetwork(input_nodes,hidden_nodes,output_nodes,learning_rate)
 
 data_file = open("mnist_dateset/mnist_train.csv",'r')
 data_list = data_file.readlines()
 data_file.close()
 
-epochs = 2
+epochs = 5
 for i in range(epochs):
     for record in data_list:
         all_values = record.split(',')
